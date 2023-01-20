@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">troll2.0</string>
+    <string name="bank_account_app">Bank Account App</string>
+    <string name="minimum_amount_of_money">Minimum amount of Money</string>
+    <string name="confirm">confirm</string>
+    <string name="back">Back</string>
+    <string name="settings">Settings</string>
+    <string name="giro">GIRO</string>
+    <string name="student">STUDENT</string>
+    <string name="both">BOTH</string>
+</resources>
