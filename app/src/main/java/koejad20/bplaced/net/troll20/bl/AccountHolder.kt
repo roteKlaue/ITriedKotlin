@@ -53,5 +53,4 @@ class AccountHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun getLayout() : RelativeLayout {
         return layout
     }
-
 }

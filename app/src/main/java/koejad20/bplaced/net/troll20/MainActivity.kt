@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import koejad20.bplaced.net.troll20.bl.AccountAdapter
 import koejad20.bplaced.net.troll20.bl.IOAccess
+import koejad20.bplaced.net.troll20.pojos.Account
 import java.util.*
 import kotlin.streams.toList
 
@@ -20,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val recyclerV : RecyclerView = findViewById(R.id.recycles)
         allAccounts = IOAccess.getFileData(this)
-        adapter = AccountAdapter(this, allAccounts)
+        adapter = AccountAdapter(this, allAccounts!!)
         recyclerV.adapter = adapter
         recyclerV.layoutManager = LinearLayoutManager(this)
         recyclerView = recyclerV
@@ -57,9 +58,11 @@ class MainActivity : AppCompatActivity() {
          var context: Context? = null
 
          fun filter() {
-             recyclerView?.adapter = AccountAdapter(context, allAccounts!!.stream().filter { it.label.lowercase(Locale.ROOT).equals(filters.label.lowercase(
-                 Locale.ROOT)) || filters.label.equals("both") }
-                 .filter { sus(it, filters.minAmount) }.toList())
+             recyclerView?.adapter = context?.let { cont ->
+                 AccountAdapter(cont, allAccounts!!.stream().filter { it.label.lowercase(Locale.ROOT).equals(filters.label.lowercase(
+                     Locale.ROOT)) || filters.label.equals("both") }
+                     .filter { sus(it, filters.minAmount) }.toList())
+             }
          }
 
          val sus: (Account, Long) -> Boolean = { a: Account, b: Long ->

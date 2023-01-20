@@ -42,7 +42,8 @@ class AccountPage : AppCompatActivity(), View.OnClickListener {
             val value = amountToTransfer.text.toString().toDouble()
             if (MainActivity.allAccounts?.stream()?.map { it.iban }?.toList()?.contains(iban.text.toString()) == true && value > 0 && value <= account.amountOfMoney + account.overdraft) {
                 account.amountOfMoney -= value
-                MainActivity.allAccounts!!.stream().filter{ e: Account -> e.iban.equals(iban.text.toString())  }.toList()[0].amountOfMoney += value
+                val temp: Account = MainActivity.allAccounts!!.stream().filter{ e: Account -> e.iban.equals(iban.text.toString())  }.toList()[0]
+                temp.amountOfMoney += value
                 update()
                 MainActivity.adapter!!.notifyDataSetChanged()
                 finish()
