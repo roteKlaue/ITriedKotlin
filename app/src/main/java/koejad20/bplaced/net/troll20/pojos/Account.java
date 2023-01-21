@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import java.util.Objects;
+
 import koejad20.bplaced.net.troll20.R;
 
 public class Account implements Parcelable {
@@ -103,5 +105,36 @@ public class Account implements Parcelable {
         dest.writeString(label);
         dest.writeInt(ImageId);
         dest.writeByte((byte) (isDebit ? 1 : 0));
+    }
+
+    public boolean isDebit() {
+        return isDebit;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Account)) return false;
+        Account account = (Account) o;
+        return getOverdraft() == account.getOverdraft() && Double.compare(account.getAmountOfMoney(), getAmountOfMoney()) == 0 && Float.compare(account.getInterest(), getInterest()) == 0 && getImageId() == account.getImageId() && isDebit() == account.isDebit() && getIban().equals(account.getIban()) && getLabel().equals(account.getLabel());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getOverdraft(), getAmountOfMoney(), getIban(), getInterest(), getLabel(), getImageId(), isDebit());
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Account{" +
+                "overdraft=" + overdraft +
+                ", AmountOfMoney=" + AmountOfMoney +
+                ", iban='" + iban + '\'' +
+                ", interest=" + interest +
+                ", label='" + label + '\'' +
+                ", ImageId=" + ImageId +
+                ", isDebit=" + isDebit +
+                '}';
     }
 }
