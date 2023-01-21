@@ -62,4 +62,32 @@ class AccountPage : AppCompatActivity(), View.OnClickListener {
         maxmoney.text = String.format(Locale.ENGLISH, "%.02f", (account.amountOfMoney + account.overdraft).toFloat())
         overdraft.text = String.format(Locale.ENGLISH, "%.02f", account.overdraft.toFloat())
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is AccountPage) return false
+
+        if (iban != other.iban) return false
+        if (account != other.account) return false
+        if (money != other.money) return false
+        if (maxmoney != other.maxmoney) return false
+        if (overdraft != other.overdraft) return false
+        if (ibantwo != other.ibantwo) return false
+        if (type != other.type) return false
+        if (amountToTransfer != other.amountToTransfer) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = iban.hashCode()
+        result = 31 * result + account.hashCode()
+        result = 31 * result + money.hashCode()
+        result = 31 * result + maxmoney.hashCode()
+        result = 31 * result + overdraft.hashCode()
+        result = 31 * result + ibantwo.hashCode()
+        result = 31 * result + type.hashCode()
+        result = 31 * result + amountToTransfer.hashCode()
+        return result
+    }
 }
