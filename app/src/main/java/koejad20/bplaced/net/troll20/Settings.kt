@@ -44,4 +44,28 @@ class Settings : AppCompatActivity() {
             MainActivity.sort()
         }
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is Settings) return false
+
+        if (radioGroup != other.radioGroup) return false
+        if (minAmount != other.minAmount) return false
+        if (map != other.map) return false
+        if (reverse != other.reverse) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = radioGroup.hashCode()
+        result = 31 * result + minAmount.hashCode()
+        result = 31 * result + map.hashCode()
+        result = 31 * result + reverse.hashCode()
+        return result
+    }
+
+    override fun toString(): String {
+        return "Settings(radioGroup=$radioGroup, minAmount=$minAmount, map=$map, reverse=$reverse)"
+    }
 }
