@@ -90,4 +90,8 @@ class AccountPage : AppCompatActivity(), View.OnClickListener {
         result = 31 * result + amountToTransfer.hashCode()
         return result
     }
+
+    override fun toString(): String {
+        return "AccountPage(iban=$iban, account=$account, money=$money, maxmoney=$maxmoney, overdraft=$overdraft, ibantwo=$ibantwo, type=$type, amountToTransfer=$amountToTransfer)"
+    }
 }
