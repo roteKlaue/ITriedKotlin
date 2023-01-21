@@ -31,7 +31,21 @@ class MainActivity : AppCompatActivity() {
         context = this
     }
 
-     companion object {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is MainActivity) return false
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return javaClass.hashCode()
+    }
+
+    override fun toString(): String {
+        return "MainActivity()"
+    }
+
+    companion object {
          var allAccounts:List<Account>? = null
          @SuppressLint("StaticFieldLeak")
          var adapter: AccountAdapter? = null
