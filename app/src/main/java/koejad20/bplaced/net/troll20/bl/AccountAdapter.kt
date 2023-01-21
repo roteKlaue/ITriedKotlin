@@ -40,4 +40,26 @@ class AccountAdapter(private val context: Context, private val accounts: List<Ac
     override fun getItemCount(): Int {
         return accounts.size
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is AccountAdapter) return false
+
+        if (context != other.context) return false
+        if (accounts != other.accounts) return false
+        if (inflater != other.inflater) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = context.hashCode()
+        result = 31 * result + accounts.hashCode()
+        result = 31 * result + inflater.hashCode()
+        return result
+    }
+
+    override fun toString(): String {
+        return "AccountAdapter(context=$context, accounts=$accounts, inflater=$inflater)"
+    }
 }
