@@ -10,6 +10,7 @@ class Settings : AppCompatActivity() {
     private lateinit var radioGroup: RadioGroup
     private lateinit var minAmount: EditText
     private val map: HashMap<Number, String> = HashMap()
+    private val reverse: HashMap<String, Int> = HashMap()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +23,12 @@ class Settings : AppCompatActivity() {
         map[R.id.both] = "both"
         map[R.id.student] = "student"
 
+        reverse["giro"] = R.id.giro
+        reverse["student"] = R.id.student
+        reverse["both"] = R.id.both
+
+        radioGroup.check(reverse[MainActivity.getLabel()]!!)
+
         findViewById<Button>(R.id.reject).setOnClickListener {
             finish()
         }
@@ -31,6 +38,10 @@ class Settings : AppCompatActivity() {
             MainActivity.setMinAmount(minAmount.text.toString().toLong())
             MainActivity.filter()
             finish()
+        }
+
+        findViewById<Button>(R.id.sort).setOnClickListener {
+            MainActivity.sort()
         }
     }
 }

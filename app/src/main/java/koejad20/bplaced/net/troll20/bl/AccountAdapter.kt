@@ -31,7 +31,7 @@ class AccountAdapter(private val context: Context, private val accounts: List<Ac
             String.format(Locale.ENGLISH, "%.02f $", data.overdraft.toFloat())
         holder.getLayout().setOnLongClickListener {
             val integer = Intent(context, AccountPage::class.java)
-            integer.putExtra("wriss", data)
+            integer.putExtra("w", data)
             context.startActivity(integer)
             true
         }

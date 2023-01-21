@@ -46,6 +46,10 @@ class MainActivity : AppCompatActivity() {
              filters.label = label
          }
 
+         fun getLabel(): String {
+             return filters.label
+         }
+
          fun setMinAmount(amount: Long) {
              filters.minAmount = amount
          }
@@ -57,16 +61,23 @@ class MainActivity : AppCompatActivity() {
          @SuppressLint("StaticFieldLeak")
          var context: Context? = null
 
+         private fun getFilteredList(): List<Account> {
+             return allAccounts!!.stream().filter { it.label.lowercase(Locale.ROOT).equals(filters.label.lowercase(
+                 Locale.ROOT)) || filters.label == "both"
+             }
+                 .filter { it.amountOfMoney >= filters.minAmount }.toList()
+         }
+
          fun filter() {
              recyclerView?.adapter = context?.let { cont ->
-                 AccountAdapter(cont, allAccounts!!.stream().filter { it.label.lowercase(Locale.ROOT).equals(filters.label.lowercase(
-                     Locale.ROOT)) || filters.label.equals("both") }
-                     .filter { sus(it, filters.minAmount) }.toList())
+                 AccountAdapter(cont, getFilteredList())
              }
          }
 
-         val sus: (Account, Long) -> Boolean = { a: Account, b: Long ->
-             a.amountOfMoney >= b
+         fun sort () {
+             recyclerView?.adapter = context?.let { cont ->
+                 AccountAdapter(cont, getFilteredList().sortedBy { it.amountOfMoney })
+             }
          }
      }
 }

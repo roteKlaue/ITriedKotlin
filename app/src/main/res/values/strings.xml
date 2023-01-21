@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">troll2.0</string>
+    <string name="app_name">BankApp</string>
     <string name="bank_account_app">Bank Account App</string>
     <string name="minimum_amount_of_money">Minimum amount of Money</string>
     <string name="confirm">confirm</string>

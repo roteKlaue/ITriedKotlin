@@ -21,7 +21,7 @@ class AccountPage : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        account = intent.getParcelableExtra("wriss")!!
+        account = intent.getParcelableExtra("w")!!
         setContentView(R.layout.activity_account_page)
         ibantwo = findViewById(R.id.ibantwopointo)
         type = findViewById(R.id.type)
