@@ -53,4 +53,34 @@ class AccountHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun getLayout() : RelativeLayout {
         return layout
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is AccountHolder) return false
+
+        if (image != other.image) return false
+        if (label != other.label) return false
+        if (iban != other.iban) return false
+        if (maxMoney != other.maxMoney) return false
+        if (money != other.money) return false
+        if (overdraft != other.overdraft) return false
+        if (layout != other.layout) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = image.hashCode()
+        result = 31 * result + label.hashCode()
+        result = 31 * result + iban.hashCode()
+        result = 31 * result + maxMoney.hashCode()
+        result = 31 * result + money.hashCode()
+        result = 31 * result + overdraft.hashCode()
+        result = 31 * result + layout.hashCode()
+        return result
+    }
+
+    override fun toString(): String {
+        return "AccountHolder(image=$image, label=$label, iban=$iban, maxMoney=$maxMoney, money=$money, overdraft=$overdraft, layout=$layout)"
+    }
 }
