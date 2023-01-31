@@ -2,6 +2,8 @@ package koejad20.bplaced.net.troll20.bl
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +28,14 @@ class AccountAdapter(private val context: Context, private val accounts: List<Ac
             String.format(Locale.ENGLISH, "%.02f $", data.overdraft.toFloat() + data.amountOfMoney)
         holder.getMoney().text =
             String.format(Locale.ENGLISH, "%.02f $", data.amountOfMoney.toFloat())
+        val color: Int = if ((data.amountOfMoney > 0)) {
+            Color.rgb(0,255,0)
+        } else if (data.amountOfMoney == 0.0) {
+            Color.rgb(0,0,0)
+        } else {
+            Color.rgb(255,0,0)
+        }
+        holder.getMoney().setTextColor(color)
         holder.getLabel().text = data.label
         holder.getOverdraft().text =
             String.format(Locale.ENGLISH, "%.02f $", data.overdraft.toFloat())
